@@ -1,9 +1,10 @@
 // Enemies our player must avoid
 class Enemy {
-    constructor(x, y) {
+    constructor(x, y, s) {
         this.sprite = 'images/enemy-bug.png';
         this.x = x
         this.y = y
+        this.speed = s
         this.endPoint = 505
     }
     render() {
@@ -11,7 +12,7 @@ class Enemy {
     }
     update(dt) {
         if (this.x < this.endPoint) {
-            this.x += 200 * dt
+            this.x += this.speed * dt
         } else {
             this.x = -202
         }
@@ -65,9 +66,9 @@ class Player {
 // Place the player object in a variable called player
 
 const player = new Player()
-const enemy1 = new Enemy(-202, 60)
-const enemy2 = new Enemy(-202, 143)
-const enemy3 = new Enemy(-202, 226)
+const enemy1 = new Enemy(-202, 60, 80)
+const enemy2 = new Enemy(-202, 143, 150)
+const enemy3 = new Enemy(-202, 226, 200)
 const allEnemies = [enemy1, enemy2, enemy3]
 
 // This listens for key presses and sends the keys to your
