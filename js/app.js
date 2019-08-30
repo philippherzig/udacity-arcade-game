@@ -24,17 +24,23 @@ class Player {
     constructor() {
         this.sprite = "images/char-boy.png"
         this.x = 202
-        this.y = 400
+        this.y = 392
         this.xMin = 0
         this.xMax = 404
-        this.yMin = -15
-        this.yMax = 400
+        this.yMin = -23
+        this.yMax = 392
     }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
     }
+    update() {
+        for (let enemy of allEnemies) {
+            if (this.y == enemy.y && (enemy.x + 50 > this.x && enemy.x < this.x + 50)) {
+                alert("You lost! Loooser!!!")
+            }
+        }
+    }
     handleInput(key) {
-        console.log(`Old Position: x = ${this.x}, y = ${this.y}`)
         switch (key) {
             case "left":
                 if (this.x != this.xMin) {
@@ -57,7 +63,6 @@ class Player {
                 }
                 break
         }
-        console.log(`New Position: x = ${this.x}, y = ${this.y}`)
     }
 }
 
