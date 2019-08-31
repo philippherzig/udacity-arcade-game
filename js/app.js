@@ -29,6 +29,8 @@ class Player {
         this.xMax = 404
         this.yMin = -23
         this.yMax = 392
+        this.score = 0
+        this.lives = 5
     }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
@@ -36,7 +38,7 @@ class Player {
     update() {
         for (let enemy of allEnemies) {
             if (this.y == enemy.y && (enemy.x + 50 > this.x && enemy.x < this.x + 50)) {
-                this.resetPostion()
+                this.lostLive()
             }
         }
     }
@@ -64,13 +66,25 @@ class Player {
                 break
         }
         if (this.y == this.yMin) {
-            this.waterReached()
+            this.roundWon()
         }
     }
-    waterReached() {
-        setTimeout(function() {
-            player.resetPostion()
-        }, 500)
+
+    lostLive() {
+        player.resetPostion()
+        this.lives -= 1
+        if (this.lives > 0) {
+            document.getElementById("lives").innerText = '💖'.repeat(this.lives)
+        } else {
+            console.log("You lost")
+        }
+        
+    }
+
+    roundWon() {
+        player.resetPostion()
+        this.score += 50
+        document.getElementById("score").innerText = this.score
     }
     resetPostion() {
         this.x = 202
