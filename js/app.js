@@ -68,7 +68,6 @@ class Player {
         }
     }
     waterReached() {
-        console.log("Water reached")
         setTimeout(function() {
             player.resetPostion()
         }, 500)
