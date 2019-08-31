@@ -36,7 +36,7 @@ class Player {
     update() {
         for (let enemy of allEnemies) {
             if (this.y == enemy.y && (enemy.x + 50 > this.x && enemy.x < this.x + 50)) {
-                alert("You lost! Loooser!!!")
+                this.resetPostion()
             }
         }
     }
@@ -55,7 +55,7 @@ class Player {
             case "up":
                 if (this.y != this.yMin) {
                     this.y -= 83
-                }
+                } 
                 break
             case "down":
                 if (this.y != this.yMax) {
@@ -63,6 +63,16 @@ class Player {
                 }
                 break
         }
+        if (this.y == this.yMin) {
+            setTimeout(function(){
+                player.resetPostion()
+            }, 500);
+            
+        }
+    }
+    resetPostion() {
+        this.x = 202
+        this.y = 392
     }
 }
 
