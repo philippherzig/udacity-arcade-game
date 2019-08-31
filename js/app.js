@@ -64,11 +64,14 @@ class Player {
                 break
         }
         if (this.y == this.yMin) {
-            setTimeout(function(){
-                player.resetPostion()
-            }, 500);
-            
+            this.waterReached()
         }
+    }
+    waterReached() {
+        console.log("Water reached")
+        setTimeout(function() {
+            player.resetPostion()
+        }, 500)
     }
     resetPostion() {
         this.x = 202
