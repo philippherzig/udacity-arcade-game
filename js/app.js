@@ -60,7 +60,7 @@ class Player {
             case "up":
                 if (this.y != this.yMin) {
                     this.y -= 83
-                } 
+                }
                 break
             case "down":
                 if (this.y != this.yMax) {
@@ -77,17 +77,18 @@ class Player {
         player.resetPostion()
         this.lives -= 1
         if (this.lives > 0) {
-            document.getElementById("lives").innerText = '💖'.repeat(this.lives)
+            this.updatePanel()
         } else {
-            console.log("You lost")
+            alert(`You have no more lives. Your score: ${this.score}`)
+            this.resetGame()
         }
-        
+
     }
 
     roundWon() {
         player.resetPostion()
         this.score += 50
-        document.getElementById("score").innerText = this.score
+        this.updatePanel()
         for (let enemy of allEnemies) {
             enemy.increaseSpeed()
         }
@@ -95,6 +96,18 @@ class Player {
     resetPostion() {
         this.x = 202
         this.y = 392
+    }
+
+    resetGame() {
+        this.resetPostion()
+        this.score = 0
+        this.lives = 5
+        this.updatePanel()
+    }
+
+    updatePanel() {
+        document.getElementById("score").innerText = this.score
+        document.getElementById("lives").innerText = '💖'.repeat(this.lives)
     }
 }
 
