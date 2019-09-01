@@ -17,6 +17,9 @@ class Enemy {
             this.x = -202
         }
     }
+    increaseSpeed() {
+        this.speed = this.speed * 1.1
+    }
 
 }
 
@@ -85,6 +88,9 @@ class Player {
         player.resetPostion()
         this.score += 50
         document.getElementById("score").innerText = this.score
+        for (let enemy of allEnemies) {
+            enemy.increaseSpeed()
+        }
     }
     resetPostion() {
         this.x = 202
