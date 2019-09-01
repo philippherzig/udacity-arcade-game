@@ -23,6 +23,7 @@ class Enemy {
 
 }
 
+// The player we control
 class Player {
     constructor() {
         this.sprite = "images/char-boy.png"
@@ -35,9 +36,11 @@ class Player {
         this.score = 0
         this.lives = 5
     }
+
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
     }
+
     update() {
         for (let enemy of allEnemies) {
             if (this.y == enemy.y && (enemy.x + 50 > this.x && enemy.x < this.x + 50)) {
@@ -45,6 +48,8 @@ class Player {
             }
         }
     }
+
+    // Controls the movement according to key input    
     handleInput(key) {
         switch (key) {
             case "left":
@@ -73,6 +78,7 @@ class Player {
         }
     }
 
+    // Removes player's live until game is lost
     lostLive() {
         player.resetPostion()
         this.lives -= 1
@@ -85,6 +91,7 @@ class Player {
 
     }
 
+    // Increases players score
     roundWon() {
         player.resetPostion()
         this.score += 50
@@ -93,11 +100,14 @@ class Player {
             enemy.increaseSpeed()
         }
     }
+
+    // Reset players position to default values
     resetPostion() {
         this.x = 202
         this.y = 392
     }
 
+    // Resets values for game restart
     resetGame() {
         this.resetPostion()
         enemy1.speed = 80
@@ -108,6 +118,7 @@ class Player {
         this.updatePanel()
     }
 
+    // Updates values inside the panel
     updatePanel() {
         document.getElementById("score").innerText = this.score
         document.getElementById("lives").innerText = '💖'.repeat(this.lives)
