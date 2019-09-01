@@ -100,6 +100,9 @@ class Player {
 
     resetGame() {
         this.resetPostion()
+        enemy1.speed = 80
+        enemy2.speed = 150
+        enemy3.speed = 200
         this.score = 0
         this.lives = 5
         this.updatePanel()
